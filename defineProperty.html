@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var person = {
+			name: 'tfciw'
+		}
+		Object.defineProperty(person, 'name', {
+			configurable: true,
+			value: 'tfciw&jyl'
+		})
+		console.log(person.name);
+		console.log(Object.getOwnPropertyDescriptor(person, 'name'));
+	</script>
+</body>
+</html>

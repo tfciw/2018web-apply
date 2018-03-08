@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="page">
+        <div class="content main">
+            <div class="refer">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    
+                </ul>
+             </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+var genCssSelector = function(){
+var arr = ['html','body'];
+var tmpArr = []
+var target = arguments[0];
+var parent = target.parentNode;
+(function() {
+    var parent = target.parentNode;
+    console.log(parent)
+    return;
+    console.log(parent)
+    tmpArr.unshift(target.tagName)
+    tmpArr.unshift(parnt.tagName)
+    // tmpArr.unshift(target.tagName,parent.tagName);
+    if(parent.parentNode !== document.body) {
+        arguments.callee(parent)
+    }
+});
+arr = arr.concat(tmpArr);
+console.log(arr);
+return arr.join(' ');
+}
+ 
+document.addEventListener('click', function(e){
+    //点击li时，返回：html body #page .content.main .refer ul li
+    console.log(genCssSelector(e.target));
+})
+</script>
+</html>

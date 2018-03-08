@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [1,2,3];
+		var newArr = arr.concat([]);
+		var forEachArr = []; //使用foreach方式
+		var forArr = []; //使用for循环方式
+		// 数组的forin只会遍历数组的值项
+		console.log(newArr);
+		console.log(arr);
+		console.log(arr === newArr) //false 所有对象哪怕看着一模一样但是引用不是一样的就不等
+		arr.forEach(function(value) {
+			forEachArr.push(value);
+		})
+		console.log(forEachArr);
+		for(let i=0;i<arr.length;i++) {
+			forArr.push(arr[i]);
+		}
+		console.log(forArr)
+		for(let b in arr) {
+			console.log(b);
+		}
+	</script>
+</body>
+</html>

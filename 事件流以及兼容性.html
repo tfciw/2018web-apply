@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// ie下事件流是以冒泡的形式实现，从目标阶段 -> element -> ... -> body html document
+		// netscape浏览器则是以事件捕获的形式实现，和冒泡相反
+		// dom2的事件流机制是捕获阶段 目标阶段 冒泡阶段
+		// 兼容性处理就是处理dom2和dom0的兼容以及ie和其他浏览器的兼容
+		var EventUtil = {
+			addHandler: function(element, type, handler) { //添加事件
+			//element:对象，dom元素。type：事件类型。handler：事件处理函数
+				if( element.addEventListener ){
+					element.addEventListener(type, handler, false); //冒泡阶段处理
+				} else if(element.attachEvent) {
+					element.attachEvent( 'on' + type, handler ); //ie
+				} else {
+					element['on' + type] = handler //dom0
+				}
+			},
+			removeHandler: function() { //移出事件
+				if(element.removeEventListener){
+					element.removeEventListener(type,handler,false);
+				} else if(element.detachEvent){
+					element.detachEvent('on' + type,handler);
+				} else{
+					element['on' + type]=null;
+				}
+			},
+			getEvent: function(event) { //获取事件对象
+				return event ? event : window.event;
+			},
+			getTarget: function(event){  //返回事件的实际目标
+				return event.target || event.srcElement;
+			},
+			preventDefault: function(event) { //阻止默认事件
+				if(event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+			},
+			cancelBubble: function(event) {
+				if(event.stopPropagtion) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			},
+
+		}
+		//https://www.cnblogs.com/hykun/p/EventUtil.html#addHandler
+		// 详解在上面的链接
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = '1125646151';
+		function toThousand(str) {
+			var prevNum = str.length%3;
+			var arr = [];
+			var prev = '';
+			var num = 0;
+			var tmpStr = '';
+			if( prevNum !=0 ) {
+				prev = str.substring(0,prevNum);
+				arr.push(prev);
+			}
+			str = str.substring(prevNum);
+			for(let i=0;i<str.length;i++) {
+				num ++;
+				tmpStr += str[i];
+				if(num == 3 && tmpStr) {
+					arr.push(tmpStr);
+					num = 0;
+					tmpStr = '';
+				}
+
+			}
+			// console.log(arr)
+			return arr.join(',');
+
+		}
+		console.log( toThousand(str) );
+	</script>
+</body>
+</html>

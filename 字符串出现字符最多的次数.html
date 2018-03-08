@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = 'dasfadaggsadsaddwfggmmfadsarfffffffssa';
+		function findStrMost(str) {
+			var obj = {}; //临时对象
+			var num = 0; //最多的次数
+			var value = ''; //最多的次数的值
+			for(let i=0;i<str.length;i++) {
+				if(!obj[str[i]]) {
+					obj[str[i]] = []
+				}
+				obj[str[i]].push(str[i]);
+			}
+			for( var attr in obj ) {
+				if(num < obj[attr].length) {
+					num = obj[attr].length;
+					value = obj[attr][0]
+				}
+			}
+			return value + '是出现次数最多的，有' + num + '次'
+
+		}
+		function regp(str) {
+			var arr = str.split('');
+			var num = 0;
+			var value = ''
+			arr.sort();
+			str = arr.join('');
+			var regp = /(\w)\1+/g;
+			str.replace(regp,function($0,$1) {
+				if(num < $0.length) {
+					num = $0.length;
+					value = $1
+				}
+			})
+			return value + '是出现次数最多的，有' + num + '次'
+		}
+
+		console.log(regp(str));
+		console.log(findStrMost(str));
+
+	</script>
+</body>
+</html>

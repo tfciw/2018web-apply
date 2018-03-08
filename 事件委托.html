@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div, ul, li{
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			height: 20px;
+			background: lightblue;
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		// 首先弄清楚js性能问题，js性能是和事件处理程序的多少直接挂钩的，因为每个函数都是对象，对象是直接存在在内存中的，内存中对象越多性能越差。其次频繁的获取dom也会降低性能。
+		// 事件委托是利用了冒泡的原理将事件委托给一个对象。
+		// 适合事件委托的事件：click，mousedown，mouseup，keyup，keydown，keypress等。
+		var oBox = document.getElementById('box');
+		oBox.addEventListener('click', function(e) {
+			var target = e.target;
+			var oLi = oBox.getElementsByTagName('li');
+			len = oLi.length;
+			for(let i=0;i<len;i++) {
+				if(oLi[i] === target) {
+					console.log('第' + (i + 1) + '个被点击了')
+				}
+			}
+		}, false)
+	</script>
+</body>
+</html>

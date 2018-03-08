@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = function() {
+			var str = 'border-solid-black';
+			function test(str) {
+				var arr = str.split('-');
+				for( let i=1;i<arr.length;i++ ) {
+					arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substring(1)
+				}
+				return arr.join('');
+			}
+			function regp(str) {
+				var reg = /-(\w)/g;
+				return str.replace(reg,function($1,$2) {
+					return $2.toUpperCase()
+				});
+			}
+			console.log( regp(str) );
+			console.log( test(str) );
+		}
+	</script>
+</body>
+</html>

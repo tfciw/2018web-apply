@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a = {
+			x: 1,
+			y: 2,
+			z: function() {
+				console.log(1)
+			},
+			m: [1,2,3]
+		}
+		// console.log(a)
+		// var str = JSON.stringify(a);
+		// a.x = 'x'
+		// console.log(a)
+		// console.log(JSON.parse(str));
+
+		// 一种不考虑各项的constructor为正则，函数，error等的深拷贝；
+		function easy_deepcopy( obj ){
+			if( typeof obj !== 'object'){
+				return;
+			}
+			var str = JSON.stringfy( obj );
+			return JSON.parse( str );
+		}
+		//考虑对象的项的constructor
+		function deepcopy( obj ){
+			var newobj = obj.constructor === Array ? [] : {};
+			newobj.constructor = obj.constructor;
+			if( typeof obj !== 'object' ){
+				return ;
+			}else{
+				for( var prop in obj ){
+					if( obj[prop].constructor === RegExp || obj[prop].constructor == Function ){
+						newobj[prop] = obj[prop];
+					}else if( typeof obj[prop] == 'object' ){
+						deepcopy( obj[prop] )
+					}else{
+						newobj[prop] = obj[prop];
+					}
+				}
+			}
+			return newobj;
+		}
+	console.log( deepcopy(a) );
+	</script>
+</body>
+</html>
